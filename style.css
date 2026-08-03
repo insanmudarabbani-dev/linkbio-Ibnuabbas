@@ -83,11 +83,13 @@ header p {
 .link-card:nth-child(3) { animation-delay: 0.4s; }
 .link-card:nth-child(4) { animation-delay: 0.5s; }
 .link-card:nth-child(5) { animation-delay: 0.6s; }
+.link-card:nth-child(6) { animation-delay: 0.7s; }
+.link-card:nth-child(7) { animation-delay: 0.8s; }
 
 .link-card i {
     font-size: 1.3rem;
     color: #d4af37;
-    width: 30px; /* Memberi ruang tetap untuk ikon */
+    width: 30px;
     text-align: center;
 }
 
@@ -95,7 +97,7 @@ header p {
     flex-grow: 1;
     text-align: center;
     font-weight: 500;
-    margin-right: 30px; /* Kompensasi agar teks tetap di tengah */
+    margin-right: 30px;
 }
 
 /* Hover Effect */
@@ -114,4 +116,97 @@ footer {
     margin-top: 50px;
     font-size: 0.75rem;
     color: #94a3b8;
+}
+
+/* ===== MODAL QRIS ===== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    max-width: 380px;
+    width: 100%;
+    border-radius: 20px;
+    background: #0a192f;
+    padding: 15px;
+    border: 2px solid #d4af37;
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
+    animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.5);
+    border-radius: 50%;
+}
+
+.modal-close:hover {
+    color: #d4af37;
+    transform: rotate(90deg);
+    background: rgba(212, 175, 55, 0.2);
+}
+
+/* Label QRIS */
+.qris-label {
+    text-align: center;
+    color: #d4af37;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .modal-content {
+        max-width: 300px;
+    }
+    .modal-close {
+        top: 10px;
+        right: 10px;
+        font-size: 30px;
+        width: 40px;
+        height: 40px;
+    }
 }
