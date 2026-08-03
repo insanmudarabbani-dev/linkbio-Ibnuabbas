@@ -41,41 +41,29 @@
             </a>
 
             <!-- ===== TOMBOL SOSIAL MEDIA (Toggle) ===== -->
-            <!-- Instagram -->
-            <div class="link-toggle">
-                <a href="#" class="link-card toggle-btn" onclick="toggleSosmed('instagram'); return false;">
-                    <i class="fab fa-instagram"></i> <span>Instagram Resmi</span>
-                    <i class="fas fa-chevron-down toggle-icon" id="icon-instagram"></i>
+            <div class="sosmed-wrapper">
+                <!-- Tombol Utama -->
+                <a href="#" class="link-card sosmed-main" onclick="toggleSosmed(); return false;">
+                    <i class="fas fa-share-alt"></i> 
+                    <span>Sosial Media</span>
+                    <i class="fas fa-chevron-down toggle-icon" id="sosmedIcon"></i>
                 </a>
-                <div class="sosmed-dropdown" id="dropdown-instagram" style="display: none;">
+                
+                <!-- Dropdown Sosial Media (tersembunyi) -->
+                <div class="sosmed-dropdown" id="sosmedDropdown">
+                    <!-- Instagram -->
                     <a href="https://www.instagram.com/pondoktahfidz_ibnuabbas/" target="_blank" class="sosmed-link">
-                        <i class="fab fa-instagram"></i> @pondoktahfidz_ibnuabbas
+                        <i class="fab fa-instagram"></i> Instagram
                     </a>
-                </div>
-            </div>
-
-            <!-- Facebook -->
-            <div class="link-toggle">
-                <a href="#" class="link-card toggle-btn" onclick="toggleSosmed('facebook'); return false;">
-                    <i class="fab fa-facebook-f"></i> <span>Facebook Resmi</span>
-                    <i class="fas fa-chevron-down toggle-icon" id="icon-facebook"></i>
-                </a>
-                <div class="sosmed-dropdown" id="dropdown-facebook" style="display: none;">
+                    
+                    <!-- Facebook -->
                     <a href="https://www.facebook.com/insan.mudarabbani" target="_blank" class="sosmed-link">
-                        <i class="fab fa-facebook-f"></i> insan.mudarabbani
+                        <i class="fab fa-facebook-f"></i> Facebook
                     </a>
-                </div>
-            </div>
-
-            <!-- YouTube -->
-            <div class="link-toggle">
-                <a href="#" class="link-card toggle-btn" onclick="toggleSosmed('youtube'); return false;">
-                    <i class="fab fa-youtube"></i> <span>Channel YouTube</span>
-                    <i class="fas fa-chevron-down toggle-icon" id="icon-youtube"></i>
-                </a>
-                <div class="sosmed-dropdown" id="dropdown-youtube" style="display: none;">
+                    
+                    <!-- YouTube -->
                     <a href="https://www.youtube.com/@pondoktahfidzibnuabbas6432" target="_blank" class="sosmed-link">
-                        <i class="fab fa-youtube"></i> Pondok Tahfidz Ibnu Abbas
+                        <i class="fab fa-youtube"></i> YouTube
                     </a>
                 </div>
             </div>
@@ -97,21 +85,12 @@
 
     <script>
         // ===== FUNGSI TOGGLE SOSMED =====
-        function toggleSosmed(platform) {
-            const dropdown = document.getElementById(`dropdown-${platform}`);
-            const icon = document.getElementById(`icon-${platform}`);
+        function toggleSosmed() {
+            const dropdown = document.getElementById('sosmedDropdown');
+            const icon = document.getElementById('sosmedIcon');
             
             if (dropdown.style.display === 'none' || dropdown.style.display === '') {
-                // Tutup semua dropdown lain
-                document.querySelectorAll('.sosmed-dropdown').forEach(el => {
-                    el.style.display = 'none';
-                });
-                document.querySelectorAll('.toggle-icon').forEach(el => {
-                    el.style.transform = 'rotate(0deg)';
-                });
-                
-                // Buka yang dipilih
-                dropdown.style.display = 'block';
+                dropdown.style.display = 'flex';
                 icon.style.transform = 'rotate(180deg)';
             } else {
                 dropdown.style.display = 'none';
