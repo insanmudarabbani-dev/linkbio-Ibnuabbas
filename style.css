@@ -210,3 +210,9 @@ footer {
         height: 40px;
     }
 }
+
+/* Fallback jika gambar gagal dimuat */
+.modal-content img {
+    min-height: 200px;
+    background: #1a2a4a;
+}
