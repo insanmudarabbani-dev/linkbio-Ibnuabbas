@@ -25,15 +25,28 @@
                 <i class="fab fa-whatsapp"></i> <span>WhatsApp Admin</span>
             </a>
             
-            <!-- Dashboard (langsung) -->
-            <a href="https://insanmudarabbani-dev.github.io/dashboardkeuangan/" class="link-card">
-                <i class="fa-solid fa-hand-holding-heart"></i> <span>Dashboard Transparansi Keuangan</span>
-            </a>
-            
-            <!-- QRIS Donasi (modal) -->
-            <a href="#" class="link-card" onclick="openModal(); return false;">
-                <i class="fa-solid fa-hand-holding-heart"></i> <span>QRIS Donasi</span>
-            </a>
+            <!-- ===== TOMBOL DONASI & KEUANGAN (Toggle) ===== -->
+            <div class="sosmed-wrapper">
+                <!-- Tombol Utama -->
+                <a href="#" class="link-card sosmed-main" onclick="toggleDonasi(); return false;">
+                    <i class="fa-solid fa-hand-holding-heart"></i> 
+                    <span>Donasi & Keuangan</span>
+                    <i class="fas fa-chevron-down toggle-icon" id="donasiIcon"></i>
+                </a>
+                
+                <!-- Dropdown Donasi & Keuangan -->
+                <div class="sosmed-dropdown" id="donasiDropdown">
+                    <!-- Dashboard Keuangan -->
+                    <a href="https://insanmudarabbani-dev.github.io/dashboardkeuangan/" target="_blank" class="sosmed-link">
+                        <i class="fa-solid fa-chart-line"></i> Dashboard Keuangan
+                    </a>
+                    
+                    <!-- QRIS Donasi -->
+                    <a href="#" class="sosmed-link" onclick="openModal(); return false;">
+                        <i class="fa-solid fa-qrcode"></i> QRIS Donasi
+                    </a>
+                </div>
+            </div>
 
             <!-- ===== TOMBOL SOSIAL MEDIA (Toggle) ===== -->
             <div class="sosmed-wrapper">
@@ -44,7 +57,7 @@
                     <i class="fas fa-chevron-down toggle-icon" id="sosmedIcon"></i>
                 </a>
                 
-                <!-- Dropdown Sosial Media (tersembunyi) -->
+                <!-- Dropdown Sosial Media -->
                 <div class="sosmed-dropdown" id="sosmedDropdown">
                     <!-- Instagram -->
                     <a href="https://www.instagram.com/pondoktahfidz_ibnuabbas/" target="_blank" class="sosmed-link">
@@ -62,7 +75,8 @@
                     </a>
                 </div>
             </div>
-              <!-- Lokasi (langsung) -->
+
+            <!-- Lokasi (langsung) -->
             <a href="https://maps.app.goo.gl/v2JVxQmnw6vt2vXb7" class="link-card">
                 <i class="fas fa-map-marker-alt"></i> <span>Lokasi Kami</span>
             </a>
@@ -83,17 +97,58 @@
     </div>
 
     <script>
+        // ===== FUNGSI TOGGLE DONASI & KEUANGAN =====
+        function toggleDonasi() {
+            const dropdown = document.getElementById('donasiDropdown');
+            const icon = document.getElementById('donasiIcon');
+            
+            if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+                // Tutup dropdown lain
+                closeAllDropdowns();
+                
+                // Buka dropdown donasi
+                dropdown.style.display = 'flex';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                dropdown.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
         // ===== FUNGSI TOGGLE SOSMED =====
         function toggleSosmed() {
             const dropdown = document.getElementById('sosmedDropdown');
             const icon = document.getElementById('sosmedIcon');
             
             if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+                // Tutup dropdown lain
+                closeAllDropdowns();
+                
+                // Buka dropdown sosial media
                 dropdown.style.display = 'flex';
                 icon.style.transform = 'rotate(180deg)';
             } else {
                 dropdown.style.display = 'none';
                 icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // ===== FUNGSI TUTUP SEMUA DROPDOWN =====
+        function closeAllDropdowns() {
+            // Tutup dropdown donasi
+            const donasiDropdown = document.getElementById('donasiDropdown');
+            const donasiIcon = document.getElementById('donasiIcon');
+            if (donasiDropdown) {
+                donasiDropdown.style.display = 'none';
+                donasiIcon.style.transform = 'rotate(0deg)';
+            }
+            
+            // Tutup dropdown sosmed
+            const sosmedDropdown = document.getElementById('sosmedDropdown');
+            const sosmedIcon = document.getElementById('sosmedIcon');
+            if (sosmedDropdown) {
+                sosmedDropdown.style.display = 'none';
+                sosmedIcon.style.transform = 'rotate(0deg)';
             }
         }
 
@@ -118,6 +173,7 @@
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
+                closeAllDropdowns();
             }
         });
     </script>
