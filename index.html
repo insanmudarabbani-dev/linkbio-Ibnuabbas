@@ -26,16 +26,19 @@
             <a href="https://insanmudarabbani-dev.github.io/dashboardkeuangan/" class="link-card">
                 <i class="fa-solid fa-hand-holding-heart"></i> <span>Dashboard Transparansi Keuangan</span>
             </a>
-               <a href="https://github.com/insanmudarabbani-dev/linkbio-Ibnuabbas/blob/main/donasi.jpeg" class="link-card">
+            
+            <!-- QRIS Donasi - Buka Modal -->
+            <a href="#" class="link-card" onclick="openModal(); return false;">
                 <i class="fa-solid fa-hand-holding-heart"></i> <span>QRIS Donasi</span>
-            </a>            
+            </a>
+            
             <a href="https://maps.app.goo.gl/v2JVxQmnw6vt2vXb7" class="link-card">
                 <i class="fas fa-map-marker-alt"></i> <span>Lokasi Kami</span>
             </a>
             <a href="https://www.instagram.com/pondoktahfidz_ibnuabbas/" class="link-card">
                 <i class="fab fa-instagram"></i> <span>Instagram Resmi</span>
             </a>
-             <a href="https://www.facebook.com/insan.mudarabbani" class="link-card">
+            <a href="https://www.facebook.com/insan.mudarabbani" class="link-card">
                 <i class="fab fa-facebook-f"></i> <span>Facebook Resmi</span>                 
             </a>
             <a href="https://www.youtube.com/@pondoktahfidzibnuabbas6432" class="link-card">
@@ -47,6 +50,40 @@
             <p>&copy; 2026 @tri_abuhafsh. All Rights Reserved.</p>
         </footer>
     </div>
+
+    <!-- ===== MODAL QRIS ===== -->
+    <div id="qrisModal" class="modal" onclick="closeModalOutside(event)">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <img src="https://github.com/insanmudarabbani-dev/linkbio-Ibnuabbas/blob/main/donasi.jpeg?raw=true" alt="QRIS Donasi">
+            <div class="qris-label">✦ SCAN UNTUK DONASI ✦</div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('qrisModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('qrisModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeModalOutside(event) {
+            if (event.target === document.getElementById('qrisModal')) {
+                closeModal();
+            }
+        }
+
+        // Tutup dengan tombol ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 
 </body>
 </html>
