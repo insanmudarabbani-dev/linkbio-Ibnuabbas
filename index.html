@@ -20,30 +20,65 @@
         </header>
 
         <div class="links">
+            <!-- WhatsApp (langsung) -->
             <a href="http://wa.me/6285359876411" class="link-card" target="_blank">
                 <i class="fab fa-whatsapp"></i> <span>WhatsApp Admin</span>
             </a>
+            
+            <!-- Dashboard (langsung) -->
             <a href="https://insanmudarabbani-dev.github.io/dashboardkeuangan/" class="link-card">
                 <i class="fa-solid fa-hand-holding-heart"></i> <span>Dashboard Transparansi Keuangan</span>
             </a>
             
-            <!-- QRIS Donasi - Buka Modal -->
+            <!-- QRIS Donasi (modal) -->
             <a href="#" class="link-card" onclick="openModal(); return false;">
                 <i class="fa-solid fa-hand-holding-heart"></i> <span>QRIS Donasi</span>
             </a>
             
+            <!-- Lokasi (langsung) -->
             <a href="https://maps.app.goo.gl/v2JVxQmnw6vt2vXb7" class="link-card">
                 <i class="fas fa-map-marker-alt"></i> <span>Lokasi Kami</span>
             </a>
-            <a href="https://www.instagram.com/pondoktahfidz_ibnuabbas/" class="link-card">
-                <i class="fab fa-instagram"></i> <span>Instagram Resmi</span>
-            </a>
-            <a href="https://www.facebook.com/insan.mudarabbani" class="link-card">
-                <i class="fab fa-facebook-f"></i> <span>Facebook Resmi</span>                 
-            </a>
-            <a href="https://www.youtube.com/@pondoktahfidzibnuabbas6432" class="link-card">
-                <i class="fab fa-youtube"></i> <span>Channel YouTube</span>
-            </a>
+
+            <!-- ===== TOMBOL SOSIAL MEDIA (Toggle) ===== -->
+            <!-- Instagram -->
+            <div class="link-toggle">
+                <a href="#" class="link-card toggle-btn" onclick="toggleSosmed('instagram'); return false;">
+                    <i class="fab fa-instagram"></i> <span>Instagram Resmi</span>
+                    <i class="fas fa-chevron-down toggle-icon" id="icon-instagram"></i>
+                </a>
+                <div class="sosmed-dropdown" id="dropdown-instagram" style="display: none;">
+                    <a href="https://www.instagram.com/pondoktahfidz_ibnuabbas/" target="_blank" class="sosmed-link">
+                        <i class="fab fa-instagram"></i> @pondoktahfidz_ibnuabbas
+                    </a>
+                </div>
+            </div>
+
+            <!-- Facebook -->
+            <div class="link-toggle">
+                <a href="#" class="link-card toggle-btn" onclick="toggleSosmed('facebook'); return false;">
+                    <i class="fab fa-facebook-f"></i> <span>Facebook Resmi</span>
+                    <i class="fas fa-chevron-down toggle-icon" id="icon-facebook"></i>
+                </a>
+                <div class="sosmed-dropdown" id="dropdown-facebook" style="display: none;">
+                    <a href="https://www.facebook.com/insan.mudarabbani" target="_blank" class="sosmed-link">
+                        <i class="fab fa-facebook-f"></i> insan.mudarabbani
+                    </a>
+                </div>
+            </div>
+
+            <!-- YouTube -->
+            <div class="link-toggle">
+                <a href="#" class="link-card toggle-btn" onclick="toggleSosmed('youtube'); return false;">
+                    <i class="fab fa-youtube"></i> <span>Channel YouTube</span>
+                    <i class="fas fa-chevron-down toggle-icon" id="icon-youtube"></i>
+                </a>
+                <div class="sosmed-dropdown" id="dropdown-youtube" style="display: none;">
+                    <a href="https://www.youtube.com/@pondoktahfidzibnuabbas6432" target="_blank" class="sosmed-link">
+                        <i class="fab fa-youtube"></i> Pondok Tahfidz Ibnu Abbas
+                    </a>
+                </div>
+            </div>
         </div>
 
         <footer>
@@ -55,13 +90,36 @@
     <div id="qrisModal" class="modal" onclick="closeModalOutside(event)">
         <span class="modal-close" onclick="closeModal()">&times;</span>
         <div class="modal-content" onclick="event.stopPropagation()">
-            <!-- GANTI URL DI BAWAH INI DENGAN RAW URL YANG BENAR -->
             <img src="https://raw.githubusercontent.com/insanmudarabbani-dev/linkbio-Ibnuabbas/main/donasi.jpeg" alt="QRIS Donasi" onerror="this.src='https://via.placeholder.com/300x300/d4af37/ffffff?text=QRIS+Donasi'">
             <div class="qris-label">✦ SCAN UNTUK DONASI ✦</div>
         </div>
     </div>
 
     <script>
+        // ===== FUNGSI TOGGLE SOSMED =====
+        function toggleSosmed(platform) {
+            const dropdown = document.getElementById(`dropdown-${platform}`);
+            const icon = document.getElementById(`icon-${platform}`);
+            
+            if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+                // Tutup semua dropdown lain
+                document.querySelectorAll('.sosmed-dropdown').forEach(el => {
+                    el.style.display = 'none';
+                });
+                document.querySelectorAll('.toggle-icon').forEach(el => {
+                    el.style.transform = 'rotate(0deg)';
+                });
+                
+                // Buka yang dipilih
+                dropdown.style.display = 'block';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                dropdown.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // ===== FUNGSI MODAL QRIS =====
         function openModal() {
             document.getElementById('qrisModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
@@ -78,7 +136,7 @@
             }
         }
 
-        // Tutup dengan tombol ESC
+        // Tutup modal dengan ESC
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
